@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Air Conditioner</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="/light">Light</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/fan">Fan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/airConditioner">Air Conditioner</a>
+        </li>
+    </ul>
+
+    <h1 th:text="'Air Conditioner: ' + (${airConditioner.state} ? 'Cool' : 'Off')"></h1>
+
+    <form th:action="@{/airConditioner}" method="post">
+        <div class="m-5">
+            <button class="btn btn-primary" name="state" value="true" onclick="this.form.submit()">Cool</button>
+            <button class="btn btn-danger" name="state" value="false" onclick="this.form.submit()">Off</button>
+        </div>
+    </form>
+</body>
+</html>

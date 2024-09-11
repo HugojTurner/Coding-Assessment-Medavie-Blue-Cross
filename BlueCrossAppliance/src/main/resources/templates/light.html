@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Light</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <style>
+        .lightOff{
+            background-color: black;
+        }
+
+        .lightOn{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="/light">Light</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/fan">Fan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/airConditioner">Air Conditioner</a>
+        </li>
+    </ul>
+
+    <h1 th:class="(${light.state} ? 'lightOn' : 'lightOff')" th:text="'Light ' + (${light.state} ? 'On' : 'Off')"></h1>
+
+    <form th:action="@{/light}" method="post">
+        <div class="m-5 form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="state" th:checked="${light.state}" value="true" onchange="this.form.submit()" role="switch">
+        </div>
+        <input type="hidden" name="state" value="false">
+    </form>
+</body>
+</html>
